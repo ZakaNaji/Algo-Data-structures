@@ -1,18 +1,15 @@
 function hasPairWithSum(arr, sum) {
-  //we use nested loop :
+  let comp = new Set();
   for (let i = 0; i < arr.length; i++) {
-    for (let j = i + 1; j < arr.length; j++) {
-      //if the sum of the two numbers is equal to the sum we are looking for, return true
-      if (arr[i] + arr[j] === sum) {
-        return true;
-      }
+    if (comp.has(arr[i])) {
+      return true;
     }
+    comp.add(sum - arr[i]);
   }
-  //if no pair is found, return false
   return false;
 }
 
 console.log(hasPairWithSum([6, 4, 3, 2, 1, 7], 9)); // true
 console.log(hasPairWithSum([6, 4, 3, 2, 1, 7], 2)); // false
-// Time complexity: O(n^2) because we are using a nested loop
-// Space complexity: O(1) because we are not using any extra space
+// Time complexity: O(n) because we are looping through the array once
+// Space complexity: O(n) because we are creating a set of the complements
