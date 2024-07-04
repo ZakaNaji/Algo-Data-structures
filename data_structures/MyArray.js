@@ -23,18 +23,19 @@ class MyArray {
 
   delete(index) {
     if (index < 0 || index >= this.length) {
-      return -1;
-    } else {
-      const deletedItem = this.data[index];
-      for (let i = index; i < this.length; i++) {
-        delete this.data[i];
-        if (i + 1 < this.length) {
-          this.data[i] = this.data[i + 1];
-        }
-      }
-      this.length--;
-      return deletedItem;
+      throw new Error("index out of bound");
     }
+    const deletedItem = this.data[index];
+    this.shiftItems(index);
+    return deletedItem;
+  }
+
+  shiftItems(index) {
+    for (let i = index; i < this.length - 1; i++) {
+      this.data[i] = this.data[i + 1];
+    }
+    delete this.data[this.length - 1];
+    this.length--;
   }
 }
 
@@ -42,5 +43,5 @@ const myArray = new MyArray();
 myArray.push("hello");
 myArray.push("world");
 myArray.push("!");
-console.log(myArray.delete(0));
+console.log(myArray.delete(2));
 console.log(myArray);
