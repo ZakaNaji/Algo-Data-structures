@@ -11,5 +11,3 @@ function hasPairWithSum(arr, sum) {
 
 console.log(hasPairWithSum([6, 4, 3, 2, 1, 7], 9)); // true
 console.log(hasPairWithSum([6, 4, 3, 2, 1, 7], 2)); // false
-// Time complexity: O(n) because we are looping through the array once
-// Space complexity: O(n) because we are creating a set of the complements
