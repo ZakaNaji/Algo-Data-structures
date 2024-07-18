@@ -14,6 +14,16 @@ class MyLinkedList {
     this.length = 1;
   }
 
+  listOfValues() {
+    const arr = [];
+    let currentNode = this.head;
+    while (currentNode !== null) {
+      arr.push(currentNode.value);
+      currentNode = currentNode.next;
+    }
+    return arr;
+  }
+
   append(value) {
     const newNode = new Node(value);
     this.tail.next = newNode;
@@ -32,4 +42,4 @@ const ll = new MyLinkedList(10);
 ll.append(11);
 ll.append(12);
 ll.prepend(9);
-console.log(ll);
+console.log(ll.listOfValues());
