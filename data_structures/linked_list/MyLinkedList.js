@@ -37,9 +37,38 @@ class MyLinkedList {
     this.head = newNode;
     this.length++;
   }
+
+  insert(index, value) {
+    if (index < 0 || index > this.length) {
+      throw new Error("index out of bounds");
+    }
+    if (index === 0) {
+      this.prepend(value);
+    } else if (index === this.length) {
+      this.append(value);
+    } else {
+      let prevNode = this._findNodeAt(index - 1);
+      let newNode = new Node(value);
+      newNode.next = prevNode.next;
+      prevNode.next = newNode;
+    }
+    this.length++;
+  }
+
+  _findNodeAt(index) {
+    let nodeAt = this.head;
+    let i = 0;
+    while (i < index) {
+      nodeAt = nodeAt.next;
+      i++;
+    }
+    return nodeAt;
+  }
 }
 const ll = new MyLinkedList(10);
 ll.append(11);
 ll.append(12);
 ll.prepend(9);
+ll.insert(1, 9.5);
+ll.insert(4, 13);
 console.log(ll.listOfValues());
