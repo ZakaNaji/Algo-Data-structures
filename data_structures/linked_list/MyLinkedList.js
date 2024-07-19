@@ -55,6 +55,22 @@ class MyLinkedList {
     this.length++;
   }
 
+  remove(index) {
+    if (index < 0 || index > this.length) {
+      throw new Error("index out of bounds");
+    }
+    if (index === 0) {
+      let nodeToBeRemoved = this.head;
+      this.head = nodeToBeRemoved.next;
+      nodeToBeRemoved.next = null;
+    } else {
+      let prevNode = this._findNodeAt(index - 1);
+      let nodeToBeRemoved = this._findNodeAt(index);
+      prevNode.next = nodeToBeRemoved.next;
+    }
+    this.length--;
+  }
+
   _findNodeAt(index) {
     let nodeAt = this.head;
     let i = 0;
@@ -71,4 +87,6 @@ ll.append(12);
 ll.prepend(9);
 ll.insert(1, 9.5);
 ll.insert(4, 13);
+console.log(ll.listOfValues());
+ll.remove(4);
 console.log(ll.listOfValues());
