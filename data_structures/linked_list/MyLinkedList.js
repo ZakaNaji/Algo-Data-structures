@@ -32,6 +32,7 @@ class MyDoubleLinkedList {
 
   prepend(value) {
     const newNode = new Node(value);
+    this.head.prev = newNode;
     newNode.next = this.head;
     this.head = newNode;
     this.length++;
@@ -47,9 +48,12 @@ class MyDoubleLinkedList {
       this.append(value);
     } else {
       let prevNode = this._findNodeAt(index - 1);
+      let nextNode = prevNode.next;
       let newNode = new Node(value);
-      newNode.next = prevNode.next;
+      newNode.next = nextNode;
+      newNode.prev = prevNode;
       prevNode.next = newNode;
+      nextNode.prev = newNode;
     }
     this.length++;
   }
@@ -82,4 +86,5 @@ class MyDoubleLinkedList {
 }
 const dl = new MyDoubleLinkedList(10);
 dl.append(11);
+dl.insert(1, 10.5);
 console.log(dl);
