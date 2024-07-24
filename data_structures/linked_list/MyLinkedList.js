@@ -2,14 +2,12 @@ class Node {
   constructor(value) {
     this.value = value;
     this.next = null;
+    this.prev = null;
   }
 }
-class MyLinkedList {
+class MyDoubleLinkedList {
   constructor(value) {
-    this.head = {
-      value: value,
-      next: null,
-    };
+    this.head = new Node(value);
     this.tail = this.head;
     this.length = 1;
   }
@@ -26,6 +24,7 @@ class MyLinkedList {
 
   append(value) {
     const newNode = new Node(value);
+    newNode.prev = this.tail;
     this.tail.next = newNode;
     this.tail = newNode;
     this.length++;
@@ -81,12 +80,6 @@ class MyLinkedList {
     return nodeAt;
   }
 }
-const ll = new MyLinkedList(10);
-ll.append(11);
-ll.append(12);
-ll.prepend(9);
-ll.insert(1, 9.5);
-ll.insert(4, 13);
-console.log(ll.listOfValues());
-ll.remove(4);
-console.log(ll.listOfValues());
+const dl = new MyDoubleLinkedList(10);
+dl.append(11);
+console.log(dl);
